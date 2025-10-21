@@ -82,7 +82,6 @@ async function generateRealisticIrishData(range: DateRange): Promise<EirGridData
   for (let i = 0; i <= points; i++) {
     const timestamp = addMinutes(startDate, i * stepMinutes)
     const hourOfDay = timestamp.getHours() + timestamp.getMinutes() / 60
-    const dayOfWeek = timestamp.getDay()
 
     // Realistic Irish wind patterns (higher at night, lower during day)
     const windBase = 0.4 // Ireland has high wind capacity
@@ -127,12 +126,6 @@ async function generateRealisticIrishData(range: DateRange): Promise<EirGridData
   return dataPoints
 }
 
-// Attempt to fetch real data (currently not available)
-async function attemptRealEirGridFetch(startDate: Date, endDate: Date): Promise<any[]> {
-  console.log('Note: EirGrid does not provide a public API')
-  console.log('Using realistic simulated data based on Irish electricity patterns')
-  throw new Error('EirGrid public API not available')
-}
 
 async function fetchEirGridData(range: DateRange): Promise<EirGridDataPoint[]> {
   try {
